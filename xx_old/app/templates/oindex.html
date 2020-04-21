@@ -1,0 +1,94 @@
+{{template "header" .Kibitagsets.Seitenueberschrift}}
+
+<body>
+<form action="/anmelden" method="post" accept-charset="utf-8">
+
+    <h3>Wer soll teilnehmen?</h3>
+    {{if .Error}}<label for="nachname" style="color: darkorange"><h4>{{.ValidationErrors.Nachname}}</h4></label>{{end}}
+    <input type="text" id="nachname" name="nachname" value="{{.SubKind.Nachname}}" placeholder="Nachname"/>
+
+    <br>
+    {{if .Error}}<label for="vorname" style="color: darkorange"><h4>{{.ValidationErrors.Vorname}}</h4></label>{{end}}
+    <input type="text" id="vorname" name="vorname" value="{{.SubKind.Vorname}}" placeholder="Vorname"/>
+
+    <br>
+    {{if .Error}}<label for="alter" style="color: darkorange"><h4>{{.ValidationErrors.Alter}}</h4></label>{{end}}
+    <input type="text" id="alter" name="alter" value="{{.SubKind.Alter}}" placeholder="Alter"/>
+
+    <br>
+    {{if .Error}}<label for="strasse_nr" style="color: darkorange"><h4>{{.ValidationErrors.Strasse_nr}}</h4></label>{{end}}
+    <input type="text" id="strasse_nr" name="strasse_nr" value="{{.SubKind.Strasse_nr}}" placeholder="Straße, Hausnummer"/>
+
+    <br>
+    {{if .Error}}<label for="plz_ort" style="color: darkorange"><h4>{{.ValidationErrors.Plz_ort}}</h4></label>{{end}}
+    <input type="text" id="plz_ort" name="plz_ort" value="53347 Alfter" placeholder="PLZ, Ort"/>
+
+    <br>
+    {{if .Error}}<label for="schule" style="color: darkorange"><h4>{{.ValidationErrors.Schule}}</h4></label>{{end}}
+    <input type="text" id="schule" name="schule" value="Anna-Schule Alfter" placeholder="Schule"/>
+
+    <br>
+    {{if .Error}}<label for="klasse" style="color: darkorange"><h4>{{.ValidationErrors.Klasse}}</h4></label>{{end}}
+    <input type="text" id="klasse" name="klasse" value="{{.SubKind.Klasse}}" placeholder="Klasse"/>
+    <br>
+
+    <h3>Zustimmung eines/einer Erziehungsberechtigten:</h3>
+    {{if .ValidationErrors.Einverstanden}}<label for="demo-copy" style="color: darkorange"><h4>Zustimmung erforderlich</h4></label>{{end}}
+    <input type="checkbox" id="demo-copy" name="einverstanden">
+    <label for="demo-copy">
+        Ja, ich bin einverstanden, dass mein Sohn/meine Tochter am &Ouml;kumen. Kinderbibeltag
+        Alfter am 19. November 2017 teilnimmt. Den Teilnahmebeitrag von 6,00 Euro &uuml;berweise ich unmittelbar
+        nach der Anmeldung.<br>Ich habe zur Kenntnis genommen, dass die Teilnahme meines Kindes nur m&ouml;glich
+        ist, wenn der Teilnahmebeitrag &uuml;berwiesen wurde und der unten angegebene Beitrag der Eltern erbracht
+        wird.
+    </label>
+    <br>
+
+    <h3>Pers&ouml;nliche Daten des/der Erziehungsberechtigten:</h3>
+    {{if .Error}}<label for="nachname_erz" style="color: darkorange"><h4>{{.ValidationErrors.Nachname_erz}}</h4></label>{{end}}
+    <input type="text" id="nachname_erz" name="nachname_erz" value="{{.SubKind.Nachname_erz}}" placeholder="Nachname"/>
+    {{if .Error}}<label for="vorname_erz" style="color: darkorange"><h4>{{.ValidationErrors.Vorname_erz}}</h4></label>{{end}}
+    <input type="text" id="vorname_erz" name="vorname_erz" value="{{.SubKind.Vorname_erz}}" placeholder="Vorname"/>
+    {{if .Error}}<label for="email" style="color: darkorange"><h4>{{.ValidationErrors.Email}}</h4></label>{{end}}
+    <input type="text" id="email" name="email" value="{{.SubKind.Email}}" placeholder="E-Mail-Adresse"/>
+    <br>
+
+    <h3>Erreichbarkeit w&auml;hrend des Kinderbibeltags</h3>
+    <p style="margin-bottom:0;">
+        W&auml;hrend des Kinderbibeltags st&auml;ndig telefonisch erreichbare Telefonnummer für
+        Notfälle:
+    </p>
+    <input type="text" id="telefon" name="telefon" value="{{.SubKind.Telefon}}" placeholder="Telefonnummer"/>
+    {{if .Error}}<label for="telefon" style="color: darkorange"><h4>{{.ValidationErrors.Telefon}}</h4></label>{{else}}<br>{{end}}
+
+    <h3>Beitrag der Eltern</h3>
+    <p>
+        Das Kinderbibeltags-Team ist dieses Jahr leider sehr klein - wir ben&ouml;tigen deshalb vermehrt auch
+        Hilfeleistungen von Eltern, z.B. f&uuml;r den Aufbau der Tische und St&uuml;hle, bei der Vorbereitung und
+        Ausgabe der Mahlzeiten und beim Aufr&auml;umen danach. Vielen Dank schon im Voraus f&uuml;r Ihre Unterst&uuml;tzung!</p>
+    <p style="margin-bottom:0;">Mein/unser Beitrag als Eltern zum Kinderbibeltag ist:</p>
+    {{if .Error}}<label for="essen" style="color: darkorange"><h4>{{.ValidationErrors.Essen}}</h4></label>{{end}}
+    <select id="essen" name="essen">
+        <option value="0">Bitte ausw&auml;hlen:</option>
+        {{$sets:=.Kibitagsets}}{{$essen:=.SubKind.Essen}}
+        {{range .Kibitagsets.Mitbringen}}
+        <option value="{{.Nr}}" {{if $sets.Check_selected .Nr $essen}}selected{{end}} >{{.Art}} (noch ben&ouml;tigt: {{.Anzahl}})</option>
+        {{end}}
+    </select>
+    <br>
+
+    <h3>Kontrollfrage</h3>
+    <p>
+        Sie sind schlauer als SPAM-Automaten, die gerne Formulare mit Werbem&uuml;ll verstopfen.<br>Bitte geben Sie in
+        das folgende Feld noch einmal den Vornamen des/der Erziehungsberechtigten ein, in genau der gleichen Weise wie
+        oben.
+    </p>
+    {{if .Error}}<label for="dumme_frage" style="color: darkorange"><h4>{{.ValidationErrors.Dumme_frage}}</h4></label>{{end}}
+    <input type="text"id="dumme_frage" name="dumme_frage" value="{{.SubKind.Dumme_frage}}" placeholder="Vorname des Erziehungsberechtigten"/>
+
+    <br><br>
+    <input type="submit" name="absenden" value="Anmeldung absenden" id="button"/>
+</form>
+
+
+{{template "footer"}}

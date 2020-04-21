@@ -1,0 +1,95 @@
+{{template "header" .Kibitagsets.Seitenueberschrift}}
+
+
+<body class="mb-3">
+
+<div class="container pt-4" id="bestaetigung">
+    <p class="lead text-success font-weight-bold" style="border-bottom: 1px solid #28a745">{{.Kibitagsets.Seitenueberschrift}}</p>
+    <p>Vielen Dank für Ihre Anmeldung! Wir haben dazu folgende Daten gespeichert:</p>
+
+    <table class="table table-striped">
+        <tr>
+            <td class="text-right">Anmeldenummer</td>
+            <th>{{.AngemeldetKind.Id}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Nachname</td>
+            <th>{{.AngemeldetKind.Nachname}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Vorname</td>
+            <th>{{.AngemeldetKind.Vorname}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Alter</td>
+            <th>{{.AngemeldetKind.Alter}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Straße Hausnummer</td>
+            <th>{{.AngemeldetKind.Strasse_nr}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">PLZ Ort</td>
+            <th>{{.AngemeldetKind.Plz_ort}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Schule</td>
+            <th>{{.AngemeldetKind.Schule}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Klasse</td>
+            <th>{{.AngemeldetKind.Klasse}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Erziehungsberechtigte/r Nachname</td>
+            <th>{{.AngemeldetKind.Nachname_erz}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Erziehungsberechtigte/r Vorname</td>
+            <th>{{.AngemeldetKind.Vorname_erz}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Erziehungsberechtigte/r E-Mail</td>
+            <th>{{.AngemeldetKind.Email}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Erziehungsberechtigte/r Telefon</td>
+            <th>{{.AngemeldetKind.Telefon}}</th>
+        </tr>
+        <tr>
+            <td class="text-right">Beitrag der Eltern</td>
+            <th>{{$essenm := index .Kibitagsets.Mitbringen .AngemeldetKind.Essen}}{{$essenm.Art}}</th>
+        </tr>
+    </table>
+
+    <p>
+        Bitte &uuml;berweisen Sie nun noch den Teilnahmebeitrag von <b>{{.Kibitagsets.Teilnahmebeitrag}} Euro</b> auf folgendes
+        Konto:<br>
+        <b>{{.Kibitagsets.Bankverbindung}}</b>
+    </p>
+    <p>
+        Bitte geben Sie als Verwendungszweck an:<br>
+        <b>Anmeldenr {{.AngemeldetKind.Id}} {{.AngemeldetKind.Vorname}} {{.AngemeldetKind.Nachname}}
+            {{.Kibitagsets.Veranstaltungsname}}</b>
+    </p>
+    <p>
+        Nach Eingang der &Uuml;berweisung erhalten Sie an die oben angegebene E-Mail-Adresse eine Bestätigung, in der
+        auch
+        die Reservierungsnummer steht, unter der Sie die Eintrittskarte am Morgen des Kinderbibeltags erhalten. (Die
+        Reservierungsnummer ist <span class="font-italic">nicht</span> identisch mit der oben genannten Anmeldenummer!)
+    </p>
+    <p class="lead">
+        Achtung: Die mit Ihrer Anmeldung gebuchten Plätze werden nur dann dauerhaft reserviert, wenn der
+        Teilnahmebeitrag
+        innerhalb von 7 Tagen nach Anmeldung bezahlt wurde und Sie darüber eine Bestätigung per E-Mail erhalten
+        haben. Nicht bezahlte Reservierungen verfallen danach und werden neu vergeben.
+    </p>
+    <p>
+        Bei Rückfragen zur Anmeldung/Bezahlung wenden Sie sich bitte an Familie Kohler, Tel. (022 22) 627 83, E-Mail:
+        <a href="mailto://team@kibitag-alfter.de">team@kibitag-alfter.de</a>
+    </p>
+
+    <a role="button" class="btn btn-lg btn-outline-primary mb-2" href="/anmelden">Weitere Anmeldung</a>
+</div>
+
+    {{template "footer"}}

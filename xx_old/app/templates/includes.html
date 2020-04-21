@@ -1,0 +1,29 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{{.}}</title>
+
+    <!-- includes Bootstrap and jQuery -->
+    <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
+    <script src="assets/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        function ScrollTo(pos) {
+            $('html, body').animate({
+                scrollTop: $(pos).offset().top
+            }, 'slow');
+        }
+    </script>
+{{end}}
+
+{{define "footer"}}
+
+</body>
+</html>
+{{end}}
